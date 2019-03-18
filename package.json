@@ -1,0 +1,19 @@
+{
+  "name": "japanese_word",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://moming2k@github.com/moming2k/japanese_word.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/moming2k/japanese_word/issues"
+  },
+  "homepage": "https://github.com/moming2k/japanese_word#readme"
+}
