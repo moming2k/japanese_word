@@ -3,7 +3,6 @@ var path = require('path');
 
 console.log("start");
 
-// Loop through all the files in the temp directory
 fs.readdir("japanmemo", function (err, files) {
     if (err) {
         console.error("Could not list the directory.", err);
@@ -11,8 +10,20 @@ fs.readdir("japanmemo", function (err, files) {
     }
   
     files.forEach(function (file, index) {
-        // Make one pass and make the file complete
-        var fromPath = path.join("japanmemo", file);
-        console.log("fromPath = " + fromPath);
+        const fromPath = path.join("japanmemo", file);
+        if (file.endsWith(".txt")) {
+            fs.stat(fromPath, function (error, stat) {
+                if (error) {
+                  console.error("Error stating file.", error);
+                  return;
+                }
+            
+                if (stat.isFile()) {
+                    console.log("fromPath = " + fromPath);
+
+                    // TODO: extract csv to json
+                }
+            });
+        }
     });
 });
