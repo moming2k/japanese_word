@@ -10,6 +10,7 @@ fs.readdir("japanmemo", function (err, files) {
         process.exit(1);
     }
   
+    const toFolder = "target/japanmemo/"
     files.forEach(function (file, index) {
         const fromPath = path.join("japanmemo", file);
         if (file.endsWith(".txt")) {
@@ -21,7 +22,9 @@ fs.readdir("japanmemo", function (err, files) {
             
                 if (stat.isFile()) {
                     console.log("fromPath = " + fromPath);
-                    let toPath = fromPath + ".json";
+
+                    to_file = file.substr(0, file.lastIndexOf(".")) + ".json";
+                    let toPath = path.join(toFolder, to_file);
 
                     var options = {
                         delimiter   : "=",
@@ -29,7 +32,6 @@ fs.readdir("japanmemo", function (err, files) {
                         headers     : "none"
                     };
 
-                    // TODO: extract csv to json
                     var read = fs.createReadStream(fromPath);
                     var write = fs.createWriteStream(toPath);
                     var toObject = csvjson.stream.toArray(options);
