@@ -1,0 +1,25 @@
+{
+    "env": {
+      "browser": true,
+      "es6": true,
+      "commonjs": true,
+      "mocha": true
+    },
+    "extends": ["airbnb-base"],
+    "parserOptions": {
+      "ecmaVersion": 9,
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": 0,
+      "indent": ["error", 4],
+      "max-len": [1, 480, 4],
+      "camelcase": "off"
+    },
+    "plugins": [
+      "chai-friendly"
+    ]
+  }
