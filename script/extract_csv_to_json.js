@@ -1,7 +1,8 @@
-const fs = require('fs');
+const fs = require('fs-extra')
+const klaw = require('klaw')
 const path = require('path');
 const csvjson = require('csvjson');
-const convert_jp_txt_to_json = require('./japanmemo/convert_txt_to_json');
+const convert_txt_to_json = require('./japanmemo/convert_txt_to_json');
 
 console.log("start");
 
@@ -19,22 +20,34 @@ function readdirAsync(path) {
 
 const start = async () => {
     console.log("inside start")
-    const file_list = await readdirAsync("japanmemo")
+    // const file_list = await readdirAsync("japanmemo")
 
     const toFolder = "target/japanmemo/"
 
+    const filterFunc = item => {
+        const basename = path.basename(item)
+        return basename === '.' || basename[0] !== '.'
+    }
+
     // console.log(file_list)
-    for (const file of file_list) {
+    klaw("japanmemo")
+        .on('data', file => {
         
-        const fromPath = path.join("japanmemo", file);
-        to_file = file.substr(0, file.lastIndexOf(".")) + ".json";
+        const fromPath = path.join("japanmemo", path.basename(file.path));
+        
+        to_file = path.basename(file.path).substr(0, path.basename(file.path).lastIndexOf(".")) + ".json";
         let toPath = path.join(toFolder, to_file);
 
         console.log("before = " +fromPath)
-        await convert_jp_txt_to_json(fromPath,toPath)
+        convert_txt_to_json(fromPath,toPath)
         console.log("after = " +toPath)
     
-    }
+        }
+    );
 }
 
-start()
+// start()
+
+console.log("a")
+convert_txt_to_json("a","b")
+console.log("b")

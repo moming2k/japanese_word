@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "node --inspect script/extract_csv_to_json.js"
+    "debug": "node --inspect=9930 script/extract_csv_to_json.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/moming2k/japanese_word#readme",
   "dependencies": {
-    "csvjson": "^5.1.0"
+    "csvjson": "^5.1.0",
+    "fs-extra": "^7.0.1",
+    "klaw": "^3.0.0"
   }
 }

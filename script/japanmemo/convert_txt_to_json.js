@@ -2,13 +2,14 @@ const fs = require('fs');
 const path = require('path');
 var csvjson = require('csvjson');
 
-const convert_txt_to_json = async (fromFile, toFile) => {
-    console.log("fromPath = " + fromPath)
+const convert_txt_to_json = (fromFile, toFile) => {
+    console.log("convert_txt_to_json")
+    console.log("fromPath = " + fromFile)
     try {
-        let state = await fs.stat(fromPath) 
+        let state = fs.stat(fromFile) 
 
         if (stat.isFile()) {
-            console.log("fromPath = " + fromPath);
+            console.log("fromPath = " + fromFile);
 
             to_file = file.substr(0, file.lastIndexOf(".")) + ".json";
             let toPath = path.join(toFolder, to_file);
