@@ -1,5 +1,6 @@
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
+var csvjson = require('csvjson');
 
 console.log("start");
 
@@ -20,8 +21,20 @@ fs.readdir("japanmemo", function (err, files) {
             
                 if (stat.isFile()) {
                     console.log("fromPath = " + fromPath);
+                    let toPath = fromPath + ".json";
+
+                    var options = {
+                        delimiter   : "=",
+                        wrap        : false,
+                        headers     : "none"
+                    };
 
                     // TODO: extract csv to json
+                    var read = fs.createReadStream(fromPath);
+                    var write = fs.createWriteStream(toPath);
+                    var toObject = csvjson.stream.toArray(options);
+                    var stringify = csvjson.stream.stringify();
+                    read.pipe(toObject).pipe(stringify).pipe(write);
                 }
             });
         }

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/moming2k/japanese_word/issues"
   },
-  "homepage": "https://github.com/moming2k/japanese_word#readme"
+  "homepage": "https://github.com/moming2k/japanese_word#readme",
+  "dependencies": {
+    "csvjson": "^5.1.0"
+  }
 }
