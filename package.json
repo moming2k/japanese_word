@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "debug": "node --inspect=9930 script/extract_csv_to_json.js"
+    "debug": "node --inspect=9930 script/test.js",
+    "debug2": "node --inspect=9930 script/extract_csv_to_json.js"
+
   },
   "repository": {
     "type": "git",

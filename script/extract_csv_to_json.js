@@ -2,7 +2,7 @@ const fs = require('fs-extra')
 const klaw = require('klaw')
 const path = require('path');
 const csvjson = require('csvjson');
-const convert_txt_to_json = require('./japanmemo/convert_txt_to_json');
+const {convert_txt_to_json} = require('./japanmemo/convert_txt_to_json')();
 
 console.log("start");
 
@@ -26,28 +26,41 @@ const start = async () => {
 
     const filterFunc = item => {
         const basename = path.basename(item)
-        return basename === '.' || basename[0] !== '.'
+        // console.log("to check = ",basename.substr(basename.lastIndexOf(".")))
+        return !(basename === '.' || basename[0] === '.' || basename.substr(basename.lastIndexOf(".")) !== ".txt")
     }
 
     // console.log(file_list)
-    klaw("japanmemo")
+    klaw("japanmemo", { filter: filterFunc })
         .on('data', file => {
         
-        const fromPath = path.join("japanmemo", path.basename(file.path));
-        
-        to_file = path.basename(file.path).substr(0, path.basename(file.path).lastIndexOf(".")) + ".json";
-        let toPath = path.join(toFolder, to_file);
+        const fromPath = path.basename(file.path);
 
-        console.log("before = " +fromPath)
-        convert_txt_to_json(fromPath,toPath)
+        if (fromPath == 'japanmemo') {
+            return
+        }
+
+        console.log("fromPath = " + fromPath);
+        
+        const toPath = fromPath.substr(0,fromPath.lastIndexOf(".")) + ".json";
+        // to_file = path.basename(file.path).substr(0, path.basename(file.path).lastIndexOf(".")) + ".json";
+        // let toPath = path.join(toFolder, to_file);
+
+        console.log("before = " +fromPath);
+        await convert_txt_to_json("japanmemo/" + fromPath,toFolder+toPath)
         console.log("after = " +toPath)
     
         }
     );
 }
 
-// start()
+(async () => {
+    try {
+        await start();
+    } catch (err) {
+        console.log(err);
+    } finally {
+        
+    }
+})();
 
-console.log("a")
-convert_txt_to_json("a","b")
-console.log("b")

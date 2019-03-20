@@ -7,14 +7,8 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "vscode NPM",
-            "runtimeExecutable": "npm",
-            "runtimeArgs": [
-              "run",
-              "debug"
-            ],
-            "port": 9930,
-            "protocol": "inspector"
-        }
+            "name": "Debug",
+            "program": "${workspaceFolder}/script/test.js"
+          }
     ]
 }

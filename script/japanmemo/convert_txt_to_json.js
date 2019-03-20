@@ -1,18 +1,17 @@
 const fs = require('fs');
-const path = require('path');
 var csvjson = require('csvjson');
+const { promisify } = require('util');
+const stat = promisify(fs.stat);
 
-const convert_txt_to_json = (fromFile, toFile) => {
+const convert_txt_to_json = async (fromFile, toFile) => {
     console.log("convert_txt_to_json")
     console.log("fromPath = " + fromFile)
+
     try {
-        let state = fs.stat(fromFile) 
-
-        if (stat.isFile()) {
+        let state = await stat(fromFile); 
+        
+        if (state && state.isFile()) {
             console.log("fromPath = " + fromFile);
-
-            to_file = file.substr(0, file.lastIndexOf(".")) + ".json";
-            let toPath = path.join(toFolder, to_file);
 
             var options = {
                 delimiter   : "=",
@@ -20,11 +19,11 @@ const convert_txt_to_json = (fromFile, toFile) => {
                 headers     : "none"
             };
 
-            var read = fs.createReadStream(fromPath);
-            var write = fs.createWriteStream(toPath);
+            var read = fs.createReadStream(fromFile);
+            var write = fs.createWriteStream(toFile);
             var toObject = csvjson.stream.toArray(options);
             var stringify = csvjson.stream.stringify();
-            // read.pipe(toObject).pipe(stringify).pipe(write);
+            read.pipe(toObject).pipe(stringify).pipe(write);
         }
 
     } catch (error) {
