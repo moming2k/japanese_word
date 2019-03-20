@@ -19,24 +19,31 @@ const convert_index_to_json = async (fromFile, toFile) => {
                 headers     : "none"
             };
 
-            const transformJsonToCSV = new stream.Transform({
-                transform: function transformer(chunk, encoding, callback) {
-                    // line++;
-                    chunk.forEach(function(part, index) {
-                        this[index][0] = this[index][0].replace(/%%%[A-Z] /i, "").replace(/.txt/,'.json');
-                    }, chunk); // use arr as this
-                    callback(false, chunk);
-                },
-                readableObjectMode: true,
-                writableObjectMode: true,
-            });
+            // -- Example for original Transform
+            // const transformJsonToCSV = new stream.Transform({
+            //     transform: function transformer(chunk, encoding, callback) {
+            //         // line++;
+            //         chunk.forEach(function(part, index) {
+            //             this[index][0] = this[index][0].replace(/%%%[A-Z] /i, "").replace(/.txt/,'.json');
+            //         }, chunk); // use arr as this
+            //         callback(false, chunk);
+            //     },
+            //     readableObjectMode: true,
+            //     writableObjectMode: true,
+            // });
 
             var read = fs.createReadStream(fromFile);
             var write = fs.createWriteStream(toFile);
             var toArray = csvjson.stream.toArray(options);
-            var transform = csvjson.stream.transform();
+            var transform = csvjson.stream.transform((chunk, _, callback) => {
+                chunk.forEach(function(part, index) {
+                    this[index][0] = this[index][0].replace(/%%%[A-Z] /i, "").replace(/.txt/,'.json');
+                }, chunk); // use arr as this
+                callback(false, chunk);
+            });
             var stringify = csvjson.stream.stringify();
-            await read.pipe(toArray).pipe(transformJsonToCSV).pipe(stringify).pipe(write);
+            
+            await read.pipe(toArray).pipe(transform).pipe(stringify).pipe(write);
         }
 
     } catch (error) {
