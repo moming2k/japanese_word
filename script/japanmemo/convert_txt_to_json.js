@@ -4,14 +4,13 @@ const { promisify } = require('util');
 const stat = promisify(fs.stat);
 
 const convert_txt_to_json = async (fromFile, toFile) => {
-    console.log("convert_txt_to_json")
-    console.log("fromPath = " + fromFile)
-
+    
     try {
         let state = await stat(fromFile); 
         
         if (state && state.isFile()) {
             console.log("fromPath = " + fromFile);
+            console.log("toFile = " + toFile);
 
             var options = {
                 delimiter   : "=",
@@ -23,7 +22,7 @@ const convert_txt_to_json = async (fromFile, toFile) => {
             var write = fs.createWriteStream(toFile);
             var toObject = csvjson.stream.toArray(options);
             var stringify = csvjson.stream.stringify();
-            read.pipe(toObject).pipe(stringify).pipe(write);
+            await read.pipe(toObject).pipe(stringify).pipe(write);
         }
 
     } catch (error) {
