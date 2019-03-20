@@ -13,8 +13,14 @@
           {
             "type": "node",
             "request": "launch",
-            "name": "Convert to JSON",
+            "name": "Convert Txt to JSON",
             "program": "${workspaceFolder}/script/extract_csv_to_json.js"
+          },
+          {
+            "type": "node",
+            "request": "launch",
+            "name": "Convert Index to JSON",
+            "program": "${workspaceFolder}/script/extract_index_to_json.js"
           }
     ]
 }
