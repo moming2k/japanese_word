@@ -1,0 +1,19 @@
+{
+    "develop": {
+        "awscloudformation": {
+            "AuthRoleName": "japanese-learning-20190321142520-authRole",
+            "UnauthRoleArn": "arn:aws:iam::647911066761:role/japanese-learning-20190321142520-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::647911066761:role/japanese-learning-20190321142520-authRole",
+            "Region": "ap-southeast-1",
+            "DeploymentBucketName": "japanese-learning-20190321142520-deployment",
+            "UnauthRoleName": "japanese-learning-20190321142520-unauthRole",
+            "StackName": "japanese-learning-20190321142520",
+            "StackId": "arn:aws:cloudformation:ap-southeast-1:647911066761:stack/japanese-learning-20190321142520/1a8e4f70-4ba2-11e9-998d-02b73c4e7d56"
+        },
+        "categories": {
+            "auth": {
+                "cognito392b2779": {}
+            }
+        }
+    }
+}

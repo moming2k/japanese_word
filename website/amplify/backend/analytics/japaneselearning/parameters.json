@@ -1,0 +1,20 @@
+{
+    "appName": "japaneselearning",
+    "roleName": "pinpointLambdaRole581eeb2e",
+    "cloudWatchPolicyName": "cloudWatchPolicy581eeb2e",
+    "pinpointPolicyName": "pinpointPolicy581eeb2e",
+    "authPolicyName": "pinpoint_amplify_581eeb2e",
+    "unauthPolicyName": "pinpoint_amplify_581eeb2e",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}
