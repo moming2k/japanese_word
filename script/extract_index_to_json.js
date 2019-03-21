@@ -3,23 +3,8 @@ const path = require('path');
 
 const {convert_index_to_json} = require('./japanmemo/convert_index_to_json')();
 
-console.log("start");
-
-function readdirAsync(path) {
-    return new Promise(function (resolve, reject) {
-        fs.readdir(path, function (error, result) {
-        if (error) {
-            reject(error);
-        } else {
-            resolve(result);
-        }
-        });
-    });
-}
-
 const start = async () => {
-    console.log("inside start")
-    // const file_list = await readdirAsync("japanmemo");
+    console.log("inside start");
     const files_list = ['jpfilecnmaptable',
                         'jpfileenmaptable',
                         'jpfilemaptable',
