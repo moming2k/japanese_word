@@ -18,6 +18,11 @@
     "workbox-webpack-plugin": "^4.1.1"
   },
   "dependencies": {
-    "aws-amplify": "^1.1.22"
+    "aws-amplify": "^1.1.22",
+    "aws-amplify-react": "^2.3.2",
+    "react": "^16.6.3",
+    "react-bootstrap": "^0.32.4",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0"
   }
 }

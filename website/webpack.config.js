@@ -6,7 +6,7 @@ const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/app.js',
+    entry: './src/App.js',
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
@@ -25,7 +25,9 @@ module.exports = {
         hot: true
     },
     plugins: [
-        new CopyWebpackPlugin(['index.html']),
+        new CopyWebpackPlugin(
+            ['index.html', 'list.html']
+            ),
         new webpack.HotModuleReplacementPlugin(),
         new WebpackPwaManifest({
             name: 'Japanese Learning App',
