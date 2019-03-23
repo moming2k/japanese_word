@@ -1,7 +1,8 @@
 import React from 'react';
-import { render } from 'react-dom';
+// import { render } from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+import {findCourses} from './services/applicationApi'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,25 +14,27 @@ class App extends React.Component {
     // this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log("componentDidMount")
+    const response = await findCourses({jwt: ''});
+    console.log(response)
   }
 
   render () { 
     const {
-      id,
-      title,
-      code,
-      type,
-      scope,
-      onTaskEditClick,
-      onAddNewPageClick,
-      onDeleteClick,
-      handlePageDeleteClick,
-      onEdit,
+      // id,
+      // title,
+      // code,
+      // type,
+      // scope,
+      // onTaskEditClick,
+      // onAddNewPageClick,
+      // onDeleteClick,
+      // handlePageDeleteClick,
+      // onEdit,
   } = this.props;
   const {
-      items,
+      // items,
   } = this.state;
 
     return (
