@@ -26,7 +26,7 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin(
-            ['index.html', 'list.html']
+            ['public/index.html', 'list.html']
             ),
         new webpack.HotModuleReplacementPlugin(),
         new WebpackPwaManifest({
