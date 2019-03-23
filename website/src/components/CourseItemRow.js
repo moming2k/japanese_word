@@ -1,14 +1,5 @@
 import React from 'react';
-
 import styled from 'styled-components'
-// import { Link, Router } from '../routes'
-// import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-// import { Button } from 'react-bootstrap'
-// import Checkbox from './Checkbox';
-// import _ from 'lodash';
-
-const grid = 10;
-
 
 const Wrapper = styled.div`
     .formOdd {
