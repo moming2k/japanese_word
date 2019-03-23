@@ -3,6 +3,20 @@ import './App.css';
 import {findCourses} from './services/applicationApi'
 import CourseItemRow from './components/CourseItemRow'
 
+import { withStyles } from "@material-ui/core/styles";
+import List from '@material-ui/core/List';
+
+const styles = theme => ({
+  root: {
+    width: "100%",
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper
+  },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4
+  }
+});
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,25 +43,20 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          { courseItems && courseItems.map( item => (
-                                        
-            <CourseItemRow 
-              key= {item[0]}
-              course= {item}
-            />
-          ))}
+          <List component="nav">
+            { courseItems && courseItems.map( item => (
+                                          
+              <CourseItemRow 
+                key= {item[0]}
+                course= {item}
+              />
+            ))}
+
+          </List>
         </header>
       </div>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

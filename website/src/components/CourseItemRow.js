@@ -1,5 +1,8 @@
 import React from 'react';
+import { withStyles } from "@material-ui/core/styles";
 import styled from 'styled-components'
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const Wrapper = styled.div`
     .formOdd {
@@ -14,11 +17,23 @@ const Wrapper = styled.div`
     }
 `
 
-class CourseItemRow extends React.PureComponent {
+const styles = theme => ({
+    root: {
+      width: "100%",
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    },
+    nested: {
+      paddingLeft: theme.spacing.unit * 4
+    }
+});
+
+class CourseItemRow extends React.Component {
 
     constructor(props) {
         super(props);
         const {course} = this.props;
+        console.log(course)
     }
 
     render () {
@@ -28,17 +43,12 @@ class CourseItemRow extends React.PureComponent {
         
         return (
             <Wrapper>
-                <table className="table">
-                    <tbody>
-                        <tr className='courseHeader' >
-                            <td width="40%"> {course[1]} </td>
-                            <td width="40%"> {course[2]} </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ListItem button>
+                    <ListItemText primary={course[1]} secondary={course[2]} />
+                </ListItem>
             </Wrapper>
         )
     }
 }
 
-export default CourseItemRow;
+export default withStyles(styles)(CourseItemRow);
