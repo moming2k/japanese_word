@@ -6,7 +6,7 @@ import axios from 'axios';
 /**
  * TODO rename API_AUTH_URL to API_PARIS_URL later after beanstalk configuration is done.
  */
-const API_HOST = 'http://localhost:3000';
+const API_HOST = '';
 const getUrl = endpoint => API_HOST + endpoint;
 
 console.log(`API_HOST: ${API_HOST}`);
