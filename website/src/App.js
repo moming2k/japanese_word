@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {findCourses} from './services/applicationApi'
 import CourseItemRow from './components/CourseItemRow'
+import HomeSearchAppBar from './components/HomeSearchAppBar'
 
 import { withStyles } from "@material-ui/core/styles";
 import List from '@material-ui/core/List';
@@ -42,6 +43,7 @@ class App extends React.Component {
     
     return (
       <div className="App">
+        <HomeSearchAppBar></HomeSearchAppBar>
         <header className="App-header">
           <List component="nav">
             { courseItems && courseItems.map( item => (
