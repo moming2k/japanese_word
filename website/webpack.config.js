@@ -26,7 +26,7 @@ module.exports = {
     },
     plugins: [
         new CopyWebpackPlugin(
-            ['public/index.html', 'list.html']
+            ['public/index.html', 'public/jpfiletblv2tw.json', 'list.html']
             ),
         new webpack.HotModuleReplacementPlugin(),
         new WebpackPwaManifest({
