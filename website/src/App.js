@@ -1,49 +1,34 @@
 import React from 'react';
-// import { render } from 'react-dom';
-import logo from './logo.svg';
 import './App.css';
 import {findCourses} from './services/applicationApi'
+import CourseItemRow from './components/CourseItemRow'
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        japaneseItems: props.japaneseItems,
+      courseItems: props.courseItems,
     }
-    // this.loadSurveys = this.loadSurveys.bind(this);
-    // this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   async componentDidMount() {
-    console.log("componentDidMount")
     const response = await findCourses({jwt: ''});
-    console.log(response)
+    if ( response && response.status === 200) {
+      console.log("API call success - findCourses")
+      const courseItems = response.data
+      this.setState({courseItems:[]})
+      this.setState({courseItems})
+    } else {
+      console.log("API call failed - findCourses")
+    }
   }
 
   render () { 
-    const {
-      // id,
-      // title,
-      // code,
-      // type,
-      // scope,
-      // onTaskEditClick,
-      // onAddNewPageClick,
-      // onDeleteClick,
-      // handlePageDeleteClick,
-      // onEdit,
-  } = this.props;
-  const {
-      // items,
-  } = this.state;
-
+    const { courseItems } = this.state;
+    
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload. `id`
-          </p>
           <a
             className="App-link"
             href="https://reactjs.org"
@@ -52,6 +37,13 @@ class App extends React.Component {
           >
             Learn React
           </a>
+          { courseItems && courseItems.map( item => (
+                                        
+            <CourseItemRow 
+              key= {item[0]}
+              course= {item}
+            />
+          ))}
         </header>
       </div>
     );
