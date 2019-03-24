@@ -1,5 +1,4 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {findCourses} from '../services/applicationApi'
 import CourseItemRow from '../components/CourseItemRow'
 import HomeSearchAppBar from '../components/HomeSearchAppBar'

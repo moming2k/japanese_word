@@ -1,6 +1,5 @@
 import React from 'react';
 import { withStyles } from "@material-ui/core/styles";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -31,9 +30,10 @@ const styles = theme => ({
 
 class WordItemRow extends React.Component {
 
+    // eslint-disable-next-line
     constructor(props) {
         super(props);
-        const {course} = this.props;
+        // const {course} = this.props;
         // console.log(course)
     }
 
