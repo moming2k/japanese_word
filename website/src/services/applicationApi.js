@@ -11,3 +11,13 @@ export const findCourses = async ({ jwt }) => {
         return error;
     }
 };
+
+export const findCourse = async ({ jwt, courseId   }) => {
+    try {
+        const response = await get(`/${courseId}`, {
+        }, jwt);
+        return response;
+    } catch (error) {
+        return error;
+    }
+};

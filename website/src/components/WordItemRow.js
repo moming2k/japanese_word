@@ -29,7 +29,7 @@ const styles = theme => ({
     }
 });
 
-class CourseItemRow extends React.Component {
+class WordItemRow extends React.Component {
 
     constructor(props) {
         super(props);
@@ -42,17 +42,21 @@ class CourseItemRow extends React.Component {
             course
         } = this.props;
         
+        let primary = ""
+        if (course[0]) {
+            primary = `${course[0]} (${course[1]})`
+        } else {
+            primary = course[1]
+        }
+
         return (
             <Wrapper>
-                <ListItem 
-                    {...{ to: `/course/${course[0]}`}}
-                    component={Link}
-                    button={true}>
-                    <ListItemText primary={course[1]} secondary={course[2]} />
+                <ListItem button>
+                    <ListItemText primary={primary} secondary={course[3]} />
                 </ListItem>
             </Wrapper>
         )
     }
 }
 
-export default withStyles(styles)(CourseItemRow);
+export default withStyles(styles)(WordItemRow);

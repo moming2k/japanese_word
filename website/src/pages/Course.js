@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import {findCourses} from '../services/applicationApi'
-import CourseItemRow from '../components/CourseItemRow'
+import {findCourse} from '../services/applicationApi'
+import WordItemRow from '../components/WordItemRow'
 import HomeSearchAppBar from '../components/HomeSearchAppBar'
 
 import { withStyles } from "@material-ui/core/styles";
@@ -21,13 +21,19 @@ const styles = theme => ({
 class Course extends React.Component {
   constructor(props) {
     super(props);
+    console.log(`props ${props}`)
     this.state = {
       courseItems: props.courseItems,
     }
   }
 
   async componentDidMount() {
-    const response = await findCourses({jwt: ''});
+    const {
+      match: { 
+        params: {courseId}
+      }
+    } = this.props
+    const response = await findCourse({jwt: '', courseId});
     if ( response && response.status === 200) {
       console.log("API call success - Get one course detail")
       const courseItems = response.data
@@ -48,7 +54,7 @@ class Course extends React.Component {
           <List component="nav">
             { courseItems && courseItems.map( item => (
                                           
-              <CourseItemRow 
+              <WordItemRow 
                 key= {item[0]}
                 course= {item}
               />
