@@ -1,5 +1,6 @@
 import React from 'react';
 import { withStyles } from "@material-ui/core/styles";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from 'styled-components'
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -43,7 +44,10 @@ class CourseItemRow extends React.Component {
         
         return (
             <Wrapper>
-                <ListItem button>
+                <ListItem 
+                    {...{ to: `/course/${course[0]}`}}
+                    component={Link}
+                    button={true}>
                     <ListItemText primary={course[1]} secondary={course[2]} />
                 </ListItem>
             </Wrapper>
