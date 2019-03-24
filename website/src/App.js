@@ -1,11 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
-import {findCourses} from './services/applicationApi'
-import CourseItemRow from './components/CourseItemRow'
-import HomeSearchAppBar from './components/HomeSearchAppBar'
+import Home from './pages/Home'
+import Course from './pages/Course'
 
 import { withStyles } from "@material-ui/core/styles";
-import List from '@material-ui/core/List';
 
 const styles = theme => ({
   root: {
@@ -26,37 +25,15 @@ class App extends React.Component {
     }
   }
 
-  async componentDidMount() {
-    const response = await findCourses({jwt: ''});
-    if ( response && response.status === 200) {
-      console.log("API call success - findCourses")
-      const courseItems = response.data
-      this.setState({courseItems:[]})
-      this.setState({courseItems})
-    } else {
-      console.log("API call failed - findCourses")
-    }
-  }
-
   render () { 
-    const { courseItems } = this.state;
-    
     return (
-      <div className="App">
-        <HomeSearchAppBar></HomeSearchAppBar>
-        <header className="App-header">
-          <List component="nav">
-            { courseItems && courseItems.map( item => (
-                                          
-              <CourseItemRow 
-                key= {item[0]}
-                course= {item}
-              />
-            ))}
+      <Router>
+        <div className="App">
+        </div>
 
-          </List>
-        </header>
-      </div>
+        <Route exact path="/" component={Home} />
+        <Route path="/course" component={Course} />
+      </Router>
     );
   }
 }
