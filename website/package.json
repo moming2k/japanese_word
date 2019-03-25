@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && webpack-dev-server --mode development",
-    "build": "webpack"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-script eject",
+    "//start": "webpack && webpack-dev-server --mode development",
+    "//build": "webpack"
   },
   "eslintConfig": {
     "extends": "react-app"
